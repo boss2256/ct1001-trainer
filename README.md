@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CT1001 Exam Practice Trainer
 
-## Getting Started
+An AI-powered practice app for CT1001 Introduction to Computational Thinking and Programming.
 
-First, run the development server:
+## What it does
 
+- Generates exam-style Python code snippet questions using AI (GPT-4o-mini)
+- Supports multiple choice, predict output, find the bug, identify error type, and open-ended questions
+- Covers all 20 CT1001 topics
+- AI marks open-ended answers with detailed feedback
+- Two-level hints that don't spoil the answer
+- Dashboard with accuracy tracking per topic (all stored locally — no login needed)
+- Review page for incorrect answers and saved bookmarks
+- Falls back to 15 built-in questions if the API is unavailable
+
+## Quick Start
+
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set up environment variables
+```bash
+cp .env.local.example .env.local
+```
+Then edit `.env.local` and add your OpenAI API key.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run locally
+```bash
+npm run dev
+```
+Open http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying to Railway
 
-## Learn More
+1. Push this repo to GitHub
+2. Create a new project on [Railway](https://railway.app)
+3. Connect your GitHub repo
+4. Add the environment variable `OPENAI_API_KEY` in Railway's Variables tab
+5. Deploy — Railway will automatically detect Next.js and build it
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- OpenAI API (gpt-4o-mini)
+- Local browser storage (no database)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+app/
+  page.tsx          — Landing page
+  layout.tsx        — Root layout + nav
+  dashboard/        — Progress dashboard
+  setup/            — Practice session setup
+  practice/         — Question answering page
+  review/           — Incorrect answers + bookmarks
+  api/
+    generate/       — Question generation endpoint
+    mark/           — Open-ended marking endpoint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+components/         — Reusable UI components
+lib/
+  topics.ts         — 20 CT1001 topic definitions
+  storage.ts        — localStorage utilities
+  validators.ts     — Zod schemas
+  fallback-questions.ts — Static question bank
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- All user data is stored in your browser's localStorage. Clearing browser storage will reset your history.
+- The API key is never exposed to the browser — all OpenAI calls go through Next.js API routes.
