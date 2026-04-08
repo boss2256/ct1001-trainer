@@ -1,5 +1,8 @@
 import type { Attempt, Question } from "./validators";
 
+// ── Re-export types ────────────────────────────────────────────────────────────
+export type { Attempt, Question };
+
 // ── Keys ───────────────────────────────────────────────────────────────────────
 
 const KEYS = {
