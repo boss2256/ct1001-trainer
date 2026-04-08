@@ -164,7 +164,7 @@ function SetupContent() {
           </div>
 
           <div>
-            <label style={{ fontSize: "0.8rem", color: "var(--text-secondary)", display: "block", marginBottom: "0.375rem", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+            <label style={{ fontSize: "0.8rem", color: "var(--text-secondary)", marginBottom: "0.375rem", display: "flex", alignItems: "center", gap: "0.375rem" }}>
               <TimerIcon size={13} /> Timed mode
             </label>
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", height: 38 }}>

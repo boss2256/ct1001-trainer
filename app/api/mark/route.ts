@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
 
   const { prompt = "", code_snippet = "", correct_answer = "", rubric = "", user_answer = "" } = body;
   const markingPrompt = buildMarkingPrompt(prompt, code_snippet, correct_answer, rubric, user_answer);
-  const model = process.env.OPENAI_MODEL ?? "gpt-5.4-mini";
+  const model = process.env.OPENAI_MODEL ?? "gpt-4-mini";
 
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
