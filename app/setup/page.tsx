@@ -70,7 +70,7 @@ function SetupContent() {
         <h2 style={{ margin: "0 0 1rem", fontSize: "1rem", fontWeight: 700 }}>📚 Topics</h2>
         <TopicSelector
           selected={settings.selectedTopics}
-          onChange={(topics) => setSettings((s) => ({ ...s, selectedTopics: topics }))}
+          onChange={(topics) => setSettings((s) => s ? { ...s, selectedTopics: topics } : { ...settings, selectedTopics: topics })}
         />
         {settings.selectedTopics.length === 0 && (
           <p style={{ color: "var(--danger)", fontSize: "0.8rem", marginTop: "0.5rem" }}>Select at least one topic.</p>
@@ -86,7 +86,7 @@ function SetupContent() {
             return (
               <button
                 key={qt.id}
-                onClick={() => setSettings((s) => ({ ...s, selectedQuestionType: qt.id }))}
+                onClick={() => setSettings((s) => s ? { ...s, selectedQuestionType: qt.id } : null)}
                 style={{
                   background: selected ? "var(--accent-glow)" : "var(--bg-elevated)",
                   border: `1px solid ${selected ? "var(--accent)" : "var(--border-subtle)"}`,
@@ -119,7 +119,7 @@ function SetupContent() {
             return (
               <button
                 key={d.id}
-                onClick={() => setSettings((s) => ({ ...s, selectedDifficulty: d.id as "easy" | "medium" | "hard" }))}
+                onClick={() => setSettings((s) => s ? { ...s, selectedDifficulty: d.id as "easy" | "medium" | "hard" } : null)}
                 style={{
                   background: selected ? `${d.color}15` : "var(--bg-elevated)",
                   border: `2px solid ${selected ? d.color : "var(--border-subtle)"}`,
@@ -149,7 +149,7 @@ function SetupContent() {
               min={1}
               max={50}
               value={settings.questionCount}
-              onChange={(e) => setSettings((s) => ({ ...s, questionCount: Math.min(50, Math.max(1, Number(e.target.value))) }))}
+              onChange={(e) => setSettings((s) => s ? { ...s, questionCount: Math.min(50, Math.max(1, Number(e.target.value))) } : null)}
               style={{
                 width: "100%",
                 background: "var(--bg-elevated)",
@@ -169,7 +169,7 @@ function SetupContent() {
             </label>
             <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", height: 38 }}>
               <button
-                onClick={() => setSettings((s) => ({ ...s, timedMode: !s.timedMode }))}
+                onClick={() => setSettings((s) => s ? { ...s, timedMode: !s.timedMode } : null)}
                 style={{
                   width: 48,
                   height: 26,
@@ -208,7 +208,7 @@ function SetupContent() {
                 min={5}
                 max={120}
                 value={settings.timerMinutes}
-                onChange={(e) => setSettings((s) => ({ ...s, timerMinutes: Math.min(120, Math.max(5, Number(e.target.value))) }))}
+                onChange={(e) => setSettings((s) => s ? { ...s, timerMinutes: Math.min(120, Math.max(5, Number(e.target.value))) } : null))
                 style={{
                   width: "100%",
                   background: "var(--bg-elevated)",
