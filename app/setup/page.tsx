@@ -208,7 +208,7 @@ function SetupContent() {
                 min={5}
                 max={120}
                 value={settings.timerMinutes}
-                onChange={(e) => setSettings((s) => s ? { ...s, timerMinutes: Math.min(120, Math.max(5, Number(e.target.value))) } : null))
+                onChange={(e) => setSettings((s) => s ? { ...s, timerMinutes: Math.min(120, Math.max(5, Number(e.target.value))) } : null)}
                 style={{
                   width: "100%",
                   background: "var(--bg-elevated)",
