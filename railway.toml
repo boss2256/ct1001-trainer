@@ -2,6 +2,10 @@
 builder = "nixpacks"
 buildCommand = "npm run build"
 
+[build.nixpacks]
+providers = ["nodejs-pnpm", "nodejs"]
+nodejs_version = "20.11.0"
+
 [deploy]
 startCommand = "npm start"
 healthcheckPath = "/"
